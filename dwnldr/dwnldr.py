@@ -7,7 +7,7 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 
-from helpers import get_folders, print_items
+from helpers import find_dir, get_folders, print_items
 
 try:
     import argparse
@@ -61,7 +61,8 @@ def main():
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
 
-    res = get_folders(service)
+    # res = get_folders(service)
+    res = find_dir(service, "Storage Documents")
     items = res.get('files', [])
     print_items(items)
 
