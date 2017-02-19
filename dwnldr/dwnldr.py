@@ -14,7 +14,17 @@ def main():
     Creates a Google Drive API service object and outputs the names and IDs
     for up to 20 files.
     """
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+    myparser = argparse.ArgumentParser(
+        #parents=[tools.argparser],
+        description="my sample parser")
+    myparser.add_argument(
+        "-t", "--test",
+        dest="mtst",
+        action="store")
+    myparser.add_argument("-r", "--rverbosity", action="count", default=0)
+
+    flags = myparser.parse_args()
+    print(flags.mtst)
 
     credentials = helpers.get_credentials(flags)
     http = credentials.authorize(httplib2.Http())
