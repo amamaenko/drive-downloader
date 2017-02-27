@@ -15,16 +15,18 @@ def main():
     for up to 20 files.
     """
     myparser = argparse.ArgumentParser(
-        #parents=[tools.argparser],
+        parents=[tools.argparser],
         description="my sample parser")
     myparser.add_argument(
-        "-t", "--test",
-        dest="mtst",
-        action="store")
-    myparser.add_argument("-r", "--rverbosity", action="count", default=0)
+        "folders",
+        help="Hello")
+    myparser.add_argument(
+        "-d", "--dest",
+        dest="dest_dir", action="store",
+        help="Destination directory for downloaded files")
 
     flags = myparser.parse_args()
-    print(flags.mtst)
+    print(flags.dest_dir)
 
     credentials = helpers.get_credentials(flags)
     http = credentials.authorize(httplib2.Http())
