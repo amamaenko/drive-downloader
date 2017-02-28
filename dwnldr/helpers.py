@@ -3,7 +3,7 @@
 '''This module contains the helper functions required for interacting with
 Google Drive API
 '''
-import os
+import os 
 
 from oauth2client import client
 from oauth2client import tools
@@ -17,8 +17,11 @@ APPLICATION_NAME = 'Drive Bulk Downloader application'
 
 
 def print_items(items):
+    """Formatted print of the items returned by the
+    Google Drive API methods
+    """
     if not items:
-        print('No files found.')
+        print("No files found.")
     else:
         print('Files:')
         for item in items:

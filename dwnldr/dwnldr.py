@@ -1,9 +1,6 @@
-"""Entry point for the drive-downloader application run.
-"""
-
 from __future__ import print_function
-import argparse
 import httplib2
+import argparse
 
 from oauth2client import tools
 from apiclient import discovery
@@ -12,6 +9,7 @@ import helpers
 
 
 def main():
+    
     """Shows basic usage of the Google Drive API.
 
     Creates a Google Drive API service object and outputs the names and IDs
@@ -21,11 +19,12 @@ def main():
         parents=[tools.argparser],
         description="my sample parser")
     myparser.add_argument(
-        "folders",
-        help="Hello")
+        "-f", "--folders",
+        help="Specify the list of folders whose content should be downloaded")
     myparser.add_argument(
         "-d", "--dest",
         dest="dest_dir", action="store",
+        default="",
         help="Destination directory for downloaded files")
 
     flags = myparser.parse_args()

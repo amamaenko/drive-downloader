@@ -5,6 +5,14 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/.DS_Store": true,
-        "**/*.pyc": true
-    }
+        "**/*.pyc": true,
+        "**/venv": true
+    },
+    "editor.rulers": [80,100],
+    "python.linting.pylintPath": "${workspaceRoot}/venv/bin/pylint",
+    "python.pythonPath": "${workspaceRoot}/venv/bin/python",
+    "python.autoComplete.extraPaths": [
+        "${workspaceRoot}/venv/lib/python3.6",
+        "${workspaceRoot}/venv/lib/python3.6/site-packages"
+     ]
 }
