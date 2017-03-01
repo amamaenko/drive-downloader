@@ -1,11 +1,13 @@
+"""Entry point for the drive-downloader application run.
+"""
 from __future__ import print_function
-import httplib2
 import argparse
+import httplib2
 
 from oauth2client import tools
 from apiclient import discovery
 
-import helpers as helpers
+import dwnldr.helpers as helpers
 
 
 def main():
