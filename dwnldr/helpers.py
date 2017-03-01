@@ -28,7 +28,7 @@ def print_items(items):
             print('{0} ({1})'.format(item['name'], item['id']))
 
 
-def find_dir(service, dir_name):
+def find_folders(service, dir_name):
     """Gets the list of folders that match the specified dir_name
 
     Note that there can be multiple instance of folders with the same

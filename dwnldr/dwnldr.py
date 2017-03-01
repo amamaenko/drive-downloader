@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
 """Entry point for the drive-downloader application run.
 """
 from __future__ import print_function
@@ -7,7 +9,7 @@ import httplib2
 from oauth2client import tools
 from apiclient import discovery
 
-import dwnldr.helpers as helpers
+import helpers
 
 
 def main():
@@ -36,7 +38,7 @@ def main():
     service = discovery.build('drive', 'v3', http=http)
 
     # res = get_folders(service)
-    res = helpers.find_dir(service, "Storage Documents")
+    res = helpers.find_folders(service, "Storage Documents")
     items = res.get('files', [])
     helpers.print_items(items)
 

@@ -6,12 +6,14 @@
     "showOutput": "always",
     "tasks": [
         {
-            "isBuildCommand": true,
             "taskName": "hello",
+            "suppressTaskName":true,
             "args": ["-f Storage"]
         },
         {
+            "isBuildCommand": true,
             "taskName": "help",
+            "suppressTaskName":true,
             "args": ["-h"]
         }
     ]
