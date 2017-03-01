@@ -5,11 +5,10 @@ import argparse
 from oauth2client import tools
 from apiclient import discovery
 
-import helpers
+import helpers as helpers
 
 
 def main():
-    
     """Shows basic usage of the Google Drive API.
 
     Creates a Google Drive API service object and outputs the names and IDs

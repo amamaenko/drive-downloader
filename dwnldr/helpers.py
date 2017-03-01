@@ -3,7 +3,7 @@
 '''This module contains the helper functions required for interacting with
 Google Drive API
 '''
-import os 
+import os
 
 from oauth2client import client
 from oauth2client import tools
@@ -29,23 +29,33 @@ def print_items(items):
 
 
 def find_dir(service, dir_name):
-    q = '''
+    """Gets the list of folders that match the specified dir_name
+
+    Note that there can be multiple instance of folders with the same
+    name, because Google Drive is not hierarchical.
+
+    Args:
+        dir_name(str): name of the folders to find.
+    """
+    query = '''
         mimeType = 'application/vnd.google-apps.folder' and
         name = '{0}'
     '''.format(dir_name)
     request = service.files().list(
-        q=q, pageSize=20)
+        q=query, pageSize=20)
     results = request.execute()
     return results
 
 
 def get_folders(service):
-    q = '''
+    """Test method
+    """
+    query = '''
         mimeType = 'application/vnd.google-apps.folder' and
         name contains 'Storage'
     '''
     request = service.files().list(
-        q=q,
+        q=query,
         pageSize=20
     )
     results = request.execute()
