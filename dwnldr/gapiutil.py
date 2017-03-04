@@ -23,9 +23,44 @@ def print_items(items):
     if not items:
         print("No files found.")
     else:
+        print("Total files count: {0}".format(len(items)))
         print('Files:')
         for item in items:
             print('{0} ({1})'.format(item['name'], item['id']))
+
+def _search(service, query):
+    """Performs a search query on Google Drive using the given 'query'
+
+    Args:
+        service(googleapiclient.service): adapter for the Google Drive API
+        query(str): search query string based on the API documentation
+            https://developers.google.com/drive/v3/web/search-parameters
+    """
+    request = service.files().list(
+        q=query
+    )
+    results = request.execute()
+    return results
+
+def find_children_by_id(service, file_id):
+    """Gets the list of all files whose parent is the file with the given
+    file_id.
+
+    Args:
+        file_id(str): file id in the Google Drive API
+
+    Returns:
+        list of file descriptors whose parent is the file with the given
+        file_id.
+    """
+    query = """'{0}' in parents""".format(file_id)
+    return _search(service, query)
+
+
+def find_all_files(foldername):
+    """Gets the list of all files inside a folder with the given name
+    """
+    return 0
 
 
 def find_folders(service, dir_name):

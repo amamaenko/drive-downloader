@@ -44,14 +44,21 @@ def main():
     service = discovery.build('drive', 'v3', http=http)
 
     # res = get_folders(service)
+    '''
     print("--")
     print(flags.src_folders)
     foldernames = pathutil.str_to_foldernames(flags.src_folders)
+    items = []
     for foldername in foldernames:
         print("=== Searching for {0}".format(foldername))
         res = gapiutil.find_folders(service, foldername)
         items = res.get('files', [])
         gapiutil.print_items(items)
+    '''
+
+    res = gapiutil.find_children_by_id(service, '0B31QrTlrRsxATFN0MEtyRHRvR0k')
+    items = res.get('files', [])
+    gapiutil.print_items(items)
 
     '''
     request = service.files().list(
