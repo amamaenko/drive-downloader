@@ -9,7 +9,7 @@ import httplib2
 from oauth2client import tools
 from apiclient import discovery
 
-import helpers
+import gapiutil
 import pathutil
 
 
@@ -39,7 +39,7 @@ def main():
 
     flags = myparser.parse_args()
 
-    credentials = helpers.get_credentials(flags)
+    credentials = gapiutil.get_credentials(flags)
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
 
@@ -49,9 +49,9 @@ def main():
     foldernames = pathutil.str_to_foldernames(flags.src_folders)
     for foldername in foldernames:
         print("=== Searching for {0}".format(foldername))
-        res = helpers.find_folders(service, foldername)
+        res = gapiutil.find_folders(service, foldername)
         items = res.get('files', [])
-        helpers.print_items(items)
+        gapiutil.print_items(items)
 
     '''
     request = service.files().list(
