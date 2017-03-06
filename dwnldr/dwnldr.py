@@ -56,17 +56,11 @@ def main():
         gapiutil.print_items(items)
     '''
 
-    res = gapiutil.find_children_by_id(service, '0B31QrTlrRsxATFN0MEtyRHRvR0k')
+    res = gapiutil.find_children_by_id(
+        service, '0B31QrTlrRsxATFN0MEtyRHRvR0k', page_size=0)
     items = res.get('files', [])
     gapiutil.print_items(items)
 
-    '''
-    request = service.files().list(
-        pageSize=20, fields="nextPageToken, files(id, name)"
-    )
-    results = request.execute()
-    items = results.get('files', [])
-    '''
 
 if __name__ == '__main__':
     main()
