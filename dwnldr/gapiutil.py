@@ -43,7 +43,8 @@ def _search(service, query, page_size=20):
         page_size(int): maximum number of returned items. Default is 20.
     """
     request = service.files().list(
-        q=query
+        q=query,
+        pageSize=page_size
     )
     results = request.execute()
     return results
@@ -107,6 +108,7 @@ def get_credentials(flags):
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
+
     credential_path = os.path.join(credential_dir,
                                    'drive-python-quickstart.json')
 
