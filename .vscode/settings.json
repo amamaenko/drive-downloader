@@ -10,7 +10,7 @@
         "**/__pycache__": true,
         "**/.cache": true
     },
-    "python.pythonPath": "${workspaceRoot}/dwnldr",
+    "python.pythonPath": "${workspaceRoot}",
     "python.autoComplete.extraPaths": [
         "${workspaceRoot}",
         "${workspaceRoot}/venv/lib/python3.6",

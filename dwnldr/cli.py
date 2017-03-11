@@ -6,7 +6,7 @@ drive-downloader application
 import argparse
 from oauth2client import tools
 
-from .dwnldrapi import download_files
+from .dwnldrapi import download_files, create_service
 
 
 HLP_DESC = """
@@ -49,4 +49,6 @@ def run():
         gapiutil.print_items(items)
     '''
 
-    download_files(flags)
+
+    service = create_service(flags)
+    download_files(service)
