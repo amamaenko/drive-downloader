@@ -6,7 +6,9 @@
         "**/.hg": true,
         "**/.DS_Store": true,
         "**/*.pyc": true,
-        "**/venv": true
+        "**/venv": true,
+        "**/__pycache__": true,
+        "**/.cache": true
     },
     "python.pythonPath": "${workspaceRoot}/dwnldr",
     "python.autoComplete.extraPaths": [
