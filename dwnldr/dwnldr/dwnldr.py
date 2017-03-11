@@ -4,8 +4,6 @@
 """
 import httplib2
 
-import sys
-print(sys.path)
 from apiclient import discovery
 import dwnldr.gapiutil as gapiutil
 

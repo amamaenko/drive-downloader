@@ -1,0 +1,135 @@
+************* Module dwnldr.dwnldr
+E:  5, 0: Unable to import 'httplib2' (import-error)
+E:  7, 0: Unable to import 'apiclient' (import-error)
+************* Module dwnldr.gapiutil
+C: 29, 0: Unnecessary parens after u'print' keyword (superfluous-parens)
+C: 31, 0: Unnecessary parens after u'print' keyword (superfluous-parens)
+C: 32, 0: Unnecessary parens after u'print' keyword (superfluous-parens)
+C: 34, 0: Unnecessary parens after u'print' keyword (superfluous-parens)
+C:124, 0: Unnecessary parens after u'print' keyword (superfluous-parens)
+E:  8, 0: Unable to import 'oauth2client' (import-error)
+E:  9, 0: Unable to import 'oauth2client' (import-error)
+E: 10, 0: Unable to import 'oauth2client.file' (import-error)
+W: 71,19: Unused argument 'folder_name' (unused-argument)
+************* Module dwnldr.launcher
+C: 57, 0: Unnecessary parens after u'print' keyword (superfluous-parens)
+E:  8, 0: Unable to import 'oauth2client' (import-error)
+W: 10, 0: Relative import 'dwnldr', should be 'dwnldr.dwnldr' (relative-import)
+W: 51,-1: String statement has no effect (pointless-string-statement)
+
+
+Report
+======
+82 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |5      |5          |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|method   |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|function |11     |11         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    dwnldr (dwnldr.dwnldr)
+      \-dwnldr (dwnldr.launcher)
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |108    |41.06 |108      |=          |
++----------+-------+------+---------+-----------+
+|docstring |108    |41.06 |108      |=          |
++----------+-------+------+---------+-----------+
+|comment   |12     |4.56  |12       |=          |
++----------+-------+------+---------+-----------+
+|empty     |35     |13.31 |35       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |6      |6        |=          |
++-----------+-------+---------+-----------+
+|refactor   |0      |0        |=          |
++-----------+-------+---------+-----------+
+|warning    |3      |3        |=          |
++-----------+-------+---------+-----------+
+|error      |6      |6        |=          |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++----------------+------+--------+---------+-----------+
+|module          |error |warning |refactor |convention |
++================+======+========+=========+===========+
+|dwnldr.gapiutil |50.00 |33.33   |0.00     |83.33      |
++----------------+------+--------+---------+-----------+
+|dwnldr.dwnldr   |33.33 |0.00    |0.00     |0.00       |
++----------------+------+--------+---------+-----------+
+|dwnldr.launcher |16.67 |66.67   |0.00     |16.67      |
++----------------+------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++---------------------------+------------+
+|message id                 |occurrences |
++===========================+============+
+|superfluous-parens         |6           |
++---------------------------+------------+
+|import-error               |6           |
++---------------------------+------------+
+|unused-argument            |1           |
++---------------------------+------------+
+|relative-import            |1           |
++---------------------------+------------+
+|pointless-string-statement |1           |
++---------------------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 5.24/10 (previous run: 5.24/10, +0.00)
+

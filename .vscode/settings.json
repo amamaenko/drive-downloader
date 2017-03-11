@@ -8,7 +8,7 @@
         "**/*.pyc": true,
         "**/venv": true
     },
-    "python.pythonPath": "${workspaceRoot}",
+    "python.pythonPath": "${workspaceRoot}/dwnldr",
     "python.autoComplete.extraPaths": [
         "${workspaceRoot}",
         "${workspaceRoot}/venv/lib/python3.6",

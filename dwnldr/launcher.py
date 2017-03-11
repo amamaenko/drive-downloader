@@ -3,11 +3,10 @@
 """This module provides the entry point for CLI-based user interface to the
 drive-downloader application
 """
-import sys
 import argparse
 from oauth2client import tools
 
-import dwnldr as dwnldr
+import dwnldr.dwnldr as dwnldr
 
 
 HLP_DESC = """
@@ -54,5 +53,4 @@ def main():
 
 
 if __name__ == '__main__':
-    print(sys.path)
-    #main()
+    main()
