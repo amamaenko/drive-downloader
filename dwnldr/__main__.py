@@ -8,7 +8,7 @@ def main():
     """Main function
     """
     try:
-        from .launcher import run
+        from .cli import run
         sys.exit(run())
     except KeyboardInterrupt:
         from . import ExitStatus
