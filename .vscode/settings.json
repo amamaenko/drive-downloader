@@ -8,9 +8,9 @@
         "**/*.pyc": true,
         "**/venv": true
     },
-    "python.pythonPath": "${workspaceRoot}/dwnldr",
+    "python.pythonPath": "${workspaceRoot}",
     "python.autoComplete.extraPaths": [
-        "${workspaceRoot}/dwnldr",
+        "${workspaceRoot}",
         "${workspaceRoot}/venv/lib/python3.6",
         "${workspaceRoot}/venv/lib/python3.6/site-packages"
      ]

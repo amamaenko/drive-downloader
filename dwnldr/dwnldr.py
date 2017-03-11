@@ -4,13 +4,13 @@
 """
 import httplib2
 
+import sys
+print(sys.path)
 from apiclient import discovery
-import gapiutil
-
+import dwnldr.gapiutil as gapiutil
 
 def download_files(flags):
     """Downloads files
-
 
     Args:
         flags(dict): dictionary of parsed command-line parameters
