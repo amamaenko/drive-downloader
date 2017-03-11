@@ -6,7 +6,7 @@ drive-downloader application
 import argparse
 from oauth2client import tools
 
-import dwnldr.dwnldr as dwnldr
+from .dwnldrapi import download_files
 
 
 HLP_DESC = """
@@ -14,7 +14,7 @@ Bulk download and convert files from a Google Drive folder to the local drive.
 """
 
 
-def main():
+def run():
     """Shows basic usage of the Google Drive API.
 
     Creates a Google Drive API service object and outputs the names and IDs
@@ -49,8 +49,4 @@ def main():
         gapiutil.print_items(items)
     '''
 
-    dwnldr.download_files(flags)
-
-
-if __name__ == '__main__':
-    main()
+    download_files(flags)

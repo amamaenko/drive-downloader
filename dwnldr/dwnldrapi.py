@@ -5,7 +5,7 @@
 import httplib2
 
 from apiclient import discovery
-import dwnldr.gapiutil as gapiutil
+from .gapiutil import get_credentials, find_children_by_id, print_items
 
 def download_files(flags):
     """Downloads files
@@ -13,11 +13,11 @@ def download_files(flags):
     Args:
         flags(dict): dictionary of parsed command-line parameters
     """
-    credentials = gapiutil.get_credentials(flags)
+    credentials = get_credentials(flags)
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v3', http=http)
 
-    res = gapiutil.find_children_by_id(
+    res = find_children_by_id(
         service, '0B31QrTlrRsxATFN0MEtyRHRvR0k', page_size=1000)
     items = res.get('files', [])
-    gapiutil.print_items(items)
+    print_items(items)
