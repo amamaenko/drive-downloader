@@ -9,5 +9,5 @@ def test_cli():
     """
     print()
     print("Currend working directory: {0}".format(os.getcwd()))
-    subprocess.run(['python', '-m', 'dwnldr', '--dry-run', '-f', 'Storage Documents'])
-
+    args = ['python', '-m', 'dwnldr', '--dry-run', '-f', '"Storage Documents"']
+    subprocess.run(args)

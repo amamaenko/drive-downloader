@@ -13,6 +13,7 @@ from oauth2client.file import Storage
 from apiclient import discovery
 
 from .dwnldrapi import download_files
+from .pathutil import str_to_foldernames
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json
@@ -115,9 +116,11 @@ def run():
         gapiutil.print_items(items)
     '''
 
+    folder_names = str_to_foldernames(flags.src_folders)
     if flags.is_dry:
         print(flags)
+        print(folder_names)
         return 0
     else:
         service = create_service(flags)
-        download_files(service, flags.src_folders)
+        download_files(service, folder_names)
