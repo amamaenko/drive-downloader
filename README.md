@@ -1,9 +1,10 @@
-# drivedownloader
-A CLI application that allows to do some bulk file operations on the user's Google Drive
+# Drive-Downloader
+A CLI application for bulk file export from the user's Google Drive's folders.
 
-# functionality
+# Key functionality
 - download files from a folder
-  - specify the source directory name on google drive and the output directory (current directory by default)
+  - specify the source directory name on google drive and the output directory 
+    (current directory by default)
   - specify the download format (original, csv)
 
 # Installation and Use

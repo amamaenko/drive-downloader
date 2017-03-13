@@ -87,6 +87,8 @@ def run():
         description=HLP_DESC)
     myparser.add_argument(
         "-f", "--folders", action="store",
+        default="",
+        required=True,
         help="Specify the list of folders whose content should be downloaded.",
         dest="src_folders")
     myparser.add_argument(
@@ -115,6 +117,10 @@ def run():
         items = res.get('files', [])
         gapiutil.print_items(items)
     '''
+
+    if not flags.src_folders:
+        print("Invalid SRC_FOLDERS argument, must be not empty.")
+        return 1
 
     folder_names = str_to_foldernames(flags.src_folders)
     if flags.is_dry:
