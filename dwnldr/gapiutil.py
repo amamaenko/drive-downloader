@@ -19,8 +19,8 @@ def print_items(items):
     if not items:
         print("No files found.")
     else:
-        print("Total files count: {0}".format(len(items)))
         print('Files:')
+        print("Total count: {0}".format(len(items)))
         for item in items:
             print('{0} ({1}) -> {2}'.format(item['name'], item['id'], item['mimeType']))
 
