@@ -12,8 +12,8 @@ from oauth2client import tools
 from oauth2client.file import Storage
 from apiclient import discovery
 
-from .dwnldrapi import download_files
-from .pathutil import str_to_foldernames
+from . import dwnldrapi
+from . import pathutil
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json
@@ -122,11 +122,11 @@ def run():
         print("Invalid SRC_FOLDERS argument, must be not empty.")
         return 1
 
-    folder_names = str_to_foldernames(flags.src_folders)
+    folder_names = pathutil.str_to_foldernames(flags.src_folders)
     if flags.is_dry:
         print(flags)
         print(folder_names)
         return 0
     else:
         service = create_service(flags)
-        download_files(service, folder_names)
+        dwnldrapi.download_files(service, folder_names)

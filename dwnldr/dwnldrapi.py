@@ -5,8 +5,7 @@
 import io
 import googleapiclient.http
 
-from .gapiutil import find_folders, find_children_by_id, print_items
-
+from . import gapiutil
 
 
 def download_files(service, folder_names):
@@ -17,18 +16,18 @@ def download_files(service, folder_names):
 
     all_folders = []
     for folder_name in folder_names:
-        res = find_folders(service, folder_name, page_size=1000)
+        res = gapiutil.find_folders(service, folder_name, page_size=1000)
         all_folders = all_folders + res.get('files', [])
 
-    print_items(all_folders)
+    gapiutil.print_items(all_folders)
 
     all_files = []
     for folder in all_folders:
-        res = find_children_by_id(
+        res = gapiutil.find_children_by_id(
             service, folder['id'], page_size=1000)
         all_files = all_files + res.get('files', [])
 
-    print_items(all_files)
+    gapiutil.print_items(all_files)
 
     print()
     file_id = all_files[0]['id']
