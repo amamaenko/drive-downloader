@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
-"""This module contains the helper functions required for interacting with
-Google Drive API
+"""Provides convenient wrappers around calls to the Google Drive API
 """
 FOLDER_TYPE = 1
 MIME_TYPE_FOLDER = 'application/vnd.google-apps.folder'
@@ -19,7 +18,8 @@ def print_items(items):
         print('Files:')
         print("Total count: {0}".format(len(items)))
         for item in items:
-            print('{0} ({1}) -> {2}'.format(item['name'], item['id'], item['mimeType']))
+            print('{0} ({1}) -> {2}'.format(
+                item['name'].encode('utf-8'), item['id'], item['mimeType']))
 
 def _search(service, query, page_size=20):
     """Performs a search query on Google Drive using the given 'query'
@@ -37,9 +37,11 @@ def _search(service, query, page_size=20):
     results = request.execute()
     return results
 
-def find_children_by_id(service, parent_id, page_size):
-    """Gets the list of all files whose parent is the file with the given
+def find_children_files_by_id(service, parent_id, page_size):
+    """Gets the list of all *files* whose parent is the file with the given
     file_id.
+
+    NB! that if there are folders, they are left out.
 
     Args:
         service(googleapiclient.service): adapter for the Google Drive API
@@ -51,8 +53,9 @@ def find_children_by_id(service, parent_id, page_size):
         file_id.
     """
     query = '''
-        '{0}' in parents
-    '''.format(parent_id)
+        mimeType != '{0}' and    
+        '{1}' in parents
+    '''.format(MIME_TYPE_FOLDER, parent_id)
     return _search(service, query, page_size)
 
 
