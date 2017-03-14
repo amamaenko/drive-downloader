@@ -32,13 +32,14 @@ def download_files(service, folder_names):
     print()
     file_id = all_files[0]['id']
     file_name = all_files[0]['name']
-    file_mime = all_files[0]['mimeType']
+    # file_mime = all_files[0]['mimeType']
     print("Start Downloading {0}".format(file_name))
     # request = service.files().get_media(fileId=file_id)
     #request = service.files().export_media(fileId=file_id, mimeType=file_mime)
-    request = service.files().export_media(fileId=file_id, mimeType='text/csv') 
-    with io.open(file_name, 'wb') as fh:
-        downloader = googleapiclient.http.MediaIoBaseDownload(fh, request)
+    request = service.files().export_media(fileId=file_id, mimeType='text/csv')
+    with io.open(file_name, 'wb') as output_file:
+        downloader = googleapiclient.http.MediaIoBaseDownload(
+            output_file, request)
         done = False
         while done is False:
             status, done = downloader.next_chunk()

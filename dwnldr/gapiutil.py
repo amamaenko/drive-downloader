@@ -3,9 +3,6 @@
 """This module contains the helper functions required for interacting with
 Google Drive API
 """
-import os
-
-
 FOLDER_TYPE = 1
 MIME_TYPE_FOLDER = 'application/vnd.google-apps.folder'
 MIME_TYPES_LOOKUP = {
