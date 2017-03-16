@@ -7,6 +7,7 @@ import googleapiclient.http
 
 MIME_TYPE_FOLDER = 'application/vnd.google-apps.folder'
 MIME_TYPE_SHEET = 'application/vnd.google-apps.spreadsheet'
+MIME_TYPE_DOC = 'application/vnd.google-apps.document'
 MIME_TYPE_DRAWING = 'application/vnd.google-apps.drawing'
 MIME_TYPE_FORM = 'application/vnd.google-apps.form'
 
@@ -20,6 +21,10 @@ EXPORT_MIME_TABLE = {
     MIME_TYPE_SHEET: {
         'mime':'text/csv',
         'ext':'.csv'
+    },
+    MIME_TYPE_DOC: {
+        'mime':'text/plain',
+        'ext':'.txt'
     },
     MIME_TYPE_DRAWING: {
         'mime':'image/jpeg',

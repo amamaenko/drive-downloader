@@ -69,10 +69,7 @@ def download_files(service, folder_names, dest_dir):
     gapiutil.print_items(all_files)
 
     print()
-
-    file_item = all_files[0]
-
-    for file_item in all_files[:5]:
+    for file_item in all_files:
         file_name = gapiutil.suggested_file_name(file_item)
         file_path = os.path.join(abs_path, file_name)
         with io.open(file_path, 'wb') as output_file:
