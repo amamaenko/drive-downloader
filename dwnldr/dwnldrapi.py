@@ -3,6 +3,7 @@
 """Provides the application level API to the drive-downloader utility.
 """
 import os
+import io
 
 from . import gapiutil
 from . import pathutil
@@ -27,7 +28,7 @@ def _find_matching_folders(service, folder_names):
     for folder_name in folder_names:
         res = gapiutil.find_folders(
             service, folder_name, page_size=MAGIC_PAGE_SIZE)
-        matching_folders = matching_folders + res.get('files', [])
+        matching_folders = matching_folders + res
 
     return matching_folders
 
@@ -49,7 +50,7 @@ def _list_contained_files(service, folder_items):
     for folder in folder_items:
         res = gapiutil.find_children_files_by_id(
             service, folder['id'], page_size=MAGIC_PAGE_SIZE)
-        contained_files = contained_files + res.get('files', [])
+        contained_files = contained_files + res
     return contained_files
 
 def download_files(service, folder_names, dest_dir):
@@ -72,15 +73,10 @@ def download_files(service, folder_names, dest_dir):
     file_item = all_files[0]
 
     for file_item in all_files[:5]:
-        file_id = file_item['id']
-        file_name = os.path.join(abs_path, file_item['name'])
-        # file_mime = all_files[0]['mimeType']
-        if file_item['mimeType'] == gapiutil.MIME_TYPE_SHEET:
-            print("Start Downloading sheet {0}".format(file_name))
-            gapiutil.export_google_doc(service, file_id, file_name + ".csv")
-        else:
-            print("Start Downloading binary {0}".format(file_name))
-            gapiutil.download_binary(service, file_id, file_name)
+        file_name = gapiutil.suggested_file_name(file_item)
+        file_path = os.path.join(abs_path, file_name)
+        with io.open(file_path, 'wb') as output_file:
+            gapiutil.download_file(service, file_item, output_file)
 
 
     print("Finish Downloading...")
