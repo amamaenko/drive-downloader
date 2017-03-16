@@ -2,10 +2,11 @@
 # -*- coding: utf8 -*-
 """Provides the application level API to the drive-downloader utility.
 """
-import io
-import googleapiclient.http
+import os
 
 from . import gapiutil
+from . import pathutil
+
 
 # assume that there are no more than 1000 results returned by the googleapi
 MAGIC_PAGE_SIZE = 1000
@@ -51,7 +52,7 @@ def _list_contained_files(service, folder_items):
         contained_files = contained_files + res.get('files', [])
     return contained_files
 
-def download_files(service, folder_names):
+def download_files(service, folder_names, dest_dir):
     """Downloads files contained in the folders provided as one of this
     function's
     arguments.
@@ -59,6 +60,7 @@ def download_files(service, folder_names):
     Args:
     """
 
+    abs_path = pathutil.get_abs_dir_path(dest_dir)
     matching_folders = _find_matching_folders(service, folder_names)
     gapiutil.print_items(matching_folders)
 
@@ -66,18 +68,19 @@ def download_files(service, folder_names):
     gapiutil.print_items(all_files)
 
     print()
-    file_id = all_files[0]['id']
-    file_name = all_files[0]['name']
-    # file_mime = all_files[0]['mimeType']
-    print("Start Downloading {0}".format(file_name))
-    # request = service.files().get_media(fileId=file_id)
-    request = service.files().export_media(fileId=file_id, mimeType='text/csv')
-    with io.open(file_name, 'wb') as output_file:
-        downloader = googleapiclient.http.MediaIoBaseDownload(
-            output_file, request)
-        done = False
-        while done is False:
-            status, done = downloader.next_chunk()
-            print("Download %d%%." % int(status.progress() * 100))
+
+    file_item = all_files[0]
+
+    for file_item in all_files[:5]:
+        file_id = file_item['id']
+        file_name = os.path.join(abs_path, file_item['name'])
+        # file_mime = all_files[0]['mimeType']
+        if file_item['mimeType'] == gapiutil.MIME_TYPE_SHEET:
+            print("Start Downloading sheet {0}".format(file_name))
+            gapiutil.export_google_doc(service, file_id, file_name + ".csv")
+        else:
+            print("Start Downloading binary {0}".format(file_name))
+            gapiutil.download_binary(service, file_id, file_name)
+
 
     print("Finish Downloading...")

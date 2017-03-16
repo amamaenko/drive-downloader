@@ -4,6 +4,8 @@
 through the CLI interface: clean them of quotes, split into individual files,
 strip from extra spaces, etc.
 """
+import os
+
 
 def str_to_tokens(user_str):
     """Split the given string into elements using the rules of separation.
@@ -48,3 +50,20 @@ def str_to_foldernames(user_str):
         foldernames.append(token_to_foldername(token))
 
     return foldernames
+
+def get_abs_dir_path(dir_name):
+    """Returns the full path to the directory on the local machine.
+
+    Checks if the directory already exists, if not - create a new one, also
+    checks if the specified name is a file.
+    """
+    abs_path = os.path.abspath(dir_name)
+    if os.path.exists(abs_path):
+        if os.path.isdir(abs_path):
+            return abs_path
+        else:
+            raise Exception(
+                "The name {0} already exists and is not a dir".format(abs_path))
+    else:
+        os.mkdir(abs_path)
+        return abs_path

@@ -93,7 +93,7 @@ def run():
         dest="src_folders")
     myparser.add_argument(
         "-d", "--dest", action="store",
-        default="./",
+        default="downloads",
         help="Destination directory for downloaded files.",
         dest="dest_dir")
     myparser.add_argument(
@@ -129,4 +129,4 @@ def run():
         return 0
     else:
         service = create_service(flags)
-        dwnldrapi.download_files(service, folder_names)
+        dwnldrapi.download_files(service, folder_names, flags.dest_dir)

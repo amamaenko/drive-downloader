@@ -2,10 +2,17 @@
 # -*- coding: utf8 -*-
 """Provides convenient wrappers around calls to the Google Drive API
 """
+import io
+import googleapiclient.http
+
+
 FOLDER_TYPE = 1
 MIME_TYPE_FOLDER = 'application/vnd.google-apps.folder'
+SHEET_TYPE = 2
+MIME_TYPE_SHEET = 'application/vnd.google-apps.spreadsheet'
 MIME_TYPES_LOOKUP = {
-    'application/vnd.google-apps.folder': FOLDER_TYPE
+    MIME_TYPE_FOLDER: FOLDER_TYPE,
+    MIME_TYPE_SHEET: SHEET_TYPE
 }
 
 def print_items(items):
@@ -19,7 +26,7 @@ def print_items(items):
         print("Total count: {0}".format(len(items)))
         for item in items:
             print('{0} ({1}) -> {2}'.format(
-                item['name'].encode('utf-8'), item['id'], item['mimeType']))
+                item['name'], item['id'], item['mimeType']))
 
 def _search(service, query, page_size=20):
     """Performs a search query on Google Drive using the given 'query'
@@ -82,3 +89,24 @@ def find_folders(service, folder_name, page_size=20):
     '''.format(MIME_TYPE_FOLDER, folder_name)
     return _search(service, query, page_size)
 
+def export_google_doc(service, file_id, file_name):
+    """Exports a Google Docs document into a file on local disk
+    """
+    request = service.files().export_media(fileId=file_id, mimeType='text/csv')
+    with io.open(file_name, 'wb') as output_file:
+        downloader = googleapiclient.http.MediaIoBaseDownload(
+            output_file, request)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+            print("Download %d%%." % int(status.progress() * 100))
+
+def download_binary(service, file_id, file_name):
+    request = service.files().get_media(fileId=file_id)
+    with io.open(file_name, 'wb') as output_file:
+        downloader = googleapiclient.http.MediaIoBaseDownload(
+            output_file, request)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+            print("Download %d%%." % int(status.progress() * 100))
