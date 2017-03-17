@@ -19,7 +19,7 @@ from . import pathutil
 # at ~/.credentials/drive-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Drive Bulk Downloader application'
+APPLICATION_NAME = 'drive-downloader'
 
 HLP_DESC = """
 Bulk download and convert files from a Google Drive folder to the local drive.
@@ -101,26 +101,7 @@ def run():
         default=False,
         help="Prepare the command but not execute it. Print parsed arguments.",
         dest="is_dry")
-
     flags = myparser.parse_args()
-
-
-    # res = get_folders(service)
-    '''
-    print("--")
-    print(flags.src_folders)
-    foldernames = pathutil.str_to_foldernames(flags.src_folders)
-    items = []
-    for foldername in foldernames:
-        print("=== Searching for {0}".format(foldername))
-        res = gapiutil.find_folders(service, foldername)
-        items = res.get('files', [])
-        gapiutil.print_items(items)
-    '''
-
-    if not flags.src_folders:
-        print("Invalid SRC_FOLDERS argument, must be not empty.")
-        return 1
 
     folder_names = pathutil.str_to_foldernames(flags.src_folders)
     if flags.is_dry:
@@ -130,3 +111,4 @@ def run():
     else:
         service = create_service(flags)
         dwnldrapi.download_files(service, folder_names, flags.dest_dir)
+        return 0
