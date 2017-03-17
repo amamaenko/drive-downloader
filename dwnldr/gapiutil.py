@@ -100,6 +100,7 @@ def find_folders(service, folder_name, page_size=20):
     """
     query = '''
         mimeType = '{0}' and
+        sharedWithMe = true and
         name = '{1}'
     '''.format(MIME_TYPE_FOLDER, folder_name)
     return _search(service, query, page_size)
