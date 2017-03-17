@@ -144,4 +144,6 @@ def download_file(service, file_item, out_stream):
     done = False
     while not done:
         status, done = downloader.next_chunk()
-        print("Download %d%%." % int(status.progress() * 100))
+        # status.progress method causes an ZeroDivision error when
+        # downloading an empty document, so comment it out
+        # print("Download %d%%." % int(status.progress() * 100))
