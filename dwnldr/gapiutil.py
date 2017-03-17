@@ -146,4 +146,5 @@ def download_file(service, file_item, out_stream):
         status, done = downloader.next_chunk()
         # status.progress method causes an ZeroDivision error when
         # downloading an empty document, so comment it out
-        # print("Download %d%%." % int(status.progress() * 100))
+        # currently there is a patched version for google-api-python-client
+        print("Download %d%%." % int(status.progress() * 100))
