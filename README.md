@@ -49,6 +49,6 @@ most secure - using the explicit access token. Follow the Step 1 of the
 instructions located at https://developers.google.com/drive/v3/web/quickstart/python 
 to get the *client_secret.json* file, and put it at any directory. Then run
 
-'python -m dwnldr'
+`python -m dwnldr`
 
 now you can delete the *client_secret.json*
