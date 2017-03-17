@@ -40,3 +40,15 @@ then install a virtual environment there:
 and, finally, install dependencies using
 
 `pip install -r dev_requirements.txt`
+
+## Register with Google and obtain application key
+
+Connecting to Google API that underlies this utility requires using the OAuth2 
+protocol. There are several flows in this protocol but we are going to use the
+most secure - using the explicit access token. Follow the Step 1 of the
+instructions located at https://developers.google.com/drive/v3/web/quickstart/python 
+to get the *client_secret.json* file, and put it at any directory. Then run
+
+'python -m dwnldr'
+
+now you can delete the *client_secret.json*
